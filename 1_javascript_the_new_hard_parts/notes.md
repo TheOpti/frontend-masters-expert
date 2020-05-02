@@ -19,9 +19,38 @@ Types:
 
 ## Asynchronous JavaScript
 
+#### Javascript is single-threaded
+
 JavaScript is single threaded (one command executing at a time)
 and has a synchronous execution model (each line is executed 
 in order the code appears).
+
+In its most basic form, JavaScript is a synchronous, blocking, 
+single-threaded language, in which only one operation can be in progress 
+at a time. 
+
+Web browsers define functions and APIs that allow us 
+to register functions that should not be executed synchronously, 
+and should instead be invoked asynchronously when some kind of 
+event occurs (the passage of time, the user's interaction with 
+the mouse, or the arrival of data over the network, for example). 
+
+This means that you can let your code do several things at the same 
+time without stopping or blocking your main thread.
+
+#### Microtask & Macrotask queue:
+
+JS has three "stacks":
+
+- standard stack for all synchronous calls (one function calls another, etc)
+- microtask queue (or job queue or microtask stack) for all async operations 
+with higher priority (process.nextTick, Promises, Object.observe, MutationObserver)
+- macrotask queue (or event queue, task queue, macrotask queue) for all
+ async operations with lower priority (setTimeout, setInterval, 
+ setImmediate, requestAnimationFrame, I/O, UI rendering)
+
+[Read more on StacKOverflow - Difference between microtask and macrotask within an event loop context
+](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)
 
 ## Promises
 
