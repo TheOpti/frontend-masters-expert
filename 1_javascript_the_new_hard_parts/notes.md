@@ -49,10 +49,28 @@ with higher priority (process.nextTick, Promises, Object.observe, MutationObserv
  async operations with lower priority (setTimeout, setInterval, 
  setImmediate, requestAnimationFrame, I/O, UI rendering)
 
-[Read more on StacKOverflow - Difference between microtask and macrotask within an event loop context
+[Read more on StackOverflow - Difference between microtask and macrotask within an event loop context
 ](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)
 
 ## Promises
+
+A Promise is an object representing the eventual completion or 
+failure of an asynchronous operation.
+
+A Promise is in one of these states:
+
+- pending: initial state, neither fulfilled nor rejected.
+- fulfilled: meaning that the operation completed successfully.
+- rejected: meaning that the operation failed.
+
+Features:
+- Callbacks will never be called before the completion of the current run
+ of the JavaScript event loop.
+- Callbacks added with then() even after the success or failure of the 
+asynchronous operation, will be called, as above.
+- Multiple callbacks may be added by calling then() several times. 
+Each callback is executed one after another, in the order 
+in which they were inserted.
 
 ## Iterators
 
