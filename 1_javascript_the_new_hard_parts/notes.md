@@ -72,6 +72,12 @@ asynchronous operation, will be called, as above.
 Each callback is executed one after another, in the order 
 in which they were inserted.
 
+#### Microtask queue
+
+Asynchronous tasks need proper management. For that, the ECMA 
+standard specifies an internal queue PromiseJobs, more often 
+referred to as the “microtask queue” (ES8 term).
+
 ## Iterators
 
 ## Generators
