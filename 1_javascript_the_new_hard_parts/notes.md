@@ -80,6 +80,40 @@ referred to as the “microtask queue” (ES8 term).
 
 ## Iterators
 
+Iterator - Object that knows how to access items from a collection one 
+at a time, while keeping track of its current position within that sequence.
+
+Example of iterator:
+```js
+function returnIterator(arr) {
+  let i = 0;
+  return function() {
+    const elem = arr[i];
+    i++;
+    return elem;
+  }
+}
+```
+
+In order to be iterable, an object must implement the @@iterator method,
+meaning that the object (or one of the objects up its prototype chain)
+must have a property with a `Symbol.iterator`.
+
+Built-in iterators in JavaScript:
+- Map
+- Set
+- Array
+- TypedArray
+- String
+
+Syntax expecting iterables:
+- `for.. of..` loop
+- spread operator
+- generator functions
+
+Read more:
+- [A Simple Guide to ES6 Iterators in JavaScript with Examples](https://codeburst.io/a-simple-guide-to-es6-iterators-in-javascript-with-examples-189d052c3d8e)
+
 ## Generators
 
 ## Final
