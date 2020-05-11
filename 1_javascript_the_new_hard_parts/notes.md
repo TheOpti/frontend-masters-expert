@@ -133,6 +133,21 @@ let one = generator.next();
 alert(JSON.stringify(one)); // {value: 1, done: false}
 ```
 
+Example with generators - Fibonacci sequence:
+
+```js
+function *fib() {
+  let current = 0;
+  let next = 1;
+  while(true) {
+    yield current;
+    [current, next] = [next, current + next];
+  }
+}
+```
+
+
+
 ## Final
 
 
