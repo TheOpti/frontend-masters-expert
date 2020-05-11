@@ -116,6 +116,23 @@ Read more:
 
 ## Generators
 
+Generators can return (“yield”) multiple values, one after another, on-demand. 
+They work great with iterables, allowing to create data streams with ease.
+
+```js
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+let generator = generateSequence();
+
+let one = generator.next();
+
+alert(JSON.stringify(one)); // {value: 1, done: false}
+```
+
 ## Final
 
 
