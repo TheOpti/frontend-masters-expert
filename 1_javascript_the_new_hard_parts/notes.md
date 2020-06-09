@@ -116,6 +116,9 @@ Read more:
 
 ## Generators
 
+Generators are functions that can be exited and later re-entered. 
+Their context (variable bindings) will be saved across re-entrances (from MDN).
+
 Generators can return (“yield”) multiple values, one after another, on-demand. 
 They work great with iterables, allowing to create data streams with ease.
 
@@ -146,6 +149,27 @@ function *fib() {
 }
 ```
 
+We can use the ability to pause createFlow's running and then restart it 
+only when our data returns
+
+```js
+function doWhenDataReceived(data) {
+  returnNextElement.next(data);
+}
+
+function* createFlow() {
+  const data = yield fetch('http://twitter.com/user/1');
+  console.log(data);
+}
+
+const returnNextElement = createFlow();
+const futureData = returnNextElement.next();
+
+futureData.then(doWhenDataReceived);
+```
+
+Read more:
+- [function*@MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
 
 
 ## Final
