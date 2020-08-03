@@ -51,3 +51,43 @@ The only difference between Iterator/Observer is who's in control.
 
 Array isn't an Iterator. It's something you can ask to GIVE YOU an iterator.
 Observable is a collection that arrives over time. 
+
+# Observables
+
+Observables can model:
+- Events
+- Async Server Requests
+- Animations
+
+Example:
+```js
+/**
+  fromEvent(
+    t: EventTargetLike, 
+    event: string, 
+    selector: function
+  ): Observable 
+*/
+var mouseMoves = Observable.fromEvent(element, 'mousemove');
+```
+
+### Hot vs Cold Observable:
+
+Cold - is when your observable creates the producer (Producers crated *inside*)
+
+```js
+var cold = new Observable((observer) => {
+  var producer = new Producer();
+  // have observer listen to producer here
+});
+```
+
+Hot - is when your observable closes over the producer (Producers created *outside*)
+
+```js
+var producer = new Producer();
+var hot = new Observable((observer) => {
+  // have observer listen to producer here
+});
+```
+
