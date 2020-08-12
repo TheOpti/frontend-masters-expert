@@ -91,3 +91,18 @@ var hot = new Observable((observer) => {
 });
 ```
 
+Read more - [link](https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339).
+
+Using observables can help eliminate race conditions since they sequence 
+the incoming streams. They also are able to handle scenarios with nested 
+observables (observables of observables).
+
+#### `takeUntil`
+
+The takeUntil method copies all the data from a source observable 
+into a new observable. However it completes once it reaches 
+a “stop observable” which is passed as a parameter. 
+ 
+This allows a seemingly infinite stream of data become finite.
+ 
+ 
