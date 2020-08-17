@@ -100,9 +100,18 @@ observables (observables of observables).
 #### `takeUntil`
 
 The takeUntil method copies all the data from a source observable 
-into a new observable. However it completes once it reaches 
+into a new observable. However, it completes once it reaches 
 a “stop observable” which is passed as a parameter. 
  
 This allows a seemingly infinite stream of data become finite.
  
- 
+ Example:
+ ```js
+import { fromEvent, interval } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+const source = interval(1000);
+const clicks = fromEvent(document, 'click');
+const result = source.pipe(takeUntil(clicks));
+result.subscribe(x => console.log(x));
+```
