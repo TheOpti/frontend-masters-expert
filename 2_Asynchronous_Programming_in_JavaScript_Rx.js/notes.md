@@ -105,7 +105,7 @@ a “stop observable” which is passed as a parameter.
  
 This allows a seemingly infinite stream of data become finite.
  
- Example:
+Example:
  ```js
 import { fromEvent, interval } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -114,4 +114,36 @@ const source = interval(1000);
 const clicks = fromEvent(document, 'click');
 const result = source.pipe(takeUntil(clicks));
 result.subscribe(x => console.log(x));
+```
+
+#### `mergeAll`
+
+The `mergeAll()` method functions similarly to the `concatAll()` method 
+except that mergeAll will combine subsequent observables without 
+waiting for a previous one to complete.
+
+Example:
+```js
+import { map, mergeAll } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+const myPromise = val =>
+  new Promise(resolve => setTimeout(() => {
+    resolve(`Result: ${val}`)
+  }, 2000)); // emit 1,2,3
+
+const source = of(1, 2, 3);
+
+const example = source.pipe(
+  map(val => myPromise(val)), //map each value to promise
+  mergeAll() //emit result from source
+);
+
+/*
+  output:
+  "Result: 1"
+  "Result: 2"
+  "Result: 3"
+*/
+const subscribe = example.subscribe(val => console.log(val));
 ```
