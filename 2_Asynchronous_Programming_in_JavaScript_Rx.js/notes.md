@@ -147,3 +147,24 @@ const example = source.pipe(
 */
 const subscribe = example.subscribe(val => console.log(val));
 ```
+
+#### `switchLatest`
+
+Explanation - convert an Observable that emits Observables into a single 
+Observable that emits the items emitted by the most-recently-emitted of 
+those Observables.
+
+Example:
+```js
+var stream1 = Rx.Observable.from([10, 20, 30, 40, 50, 60, 70, 80]);
+var stream2 = Rx.Observable.from([11, 21, 31, 41, 51, 61, 71]);
+var stream3 = Rx.Observable.from([12, 22, 32, 42, 52, 62, 72]);
+
+let source = Rx.Observable.of(stream1, stream2, stream3);
+
+source.switchLatest().subscribe(function (a) {
+  console.log(a);
+})
+
+// 10, 11, 12, 22, 32, 42, 52, 62, 72
+```
